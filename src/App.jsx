@@ -96,7 +96,7 @@ const ChaosAILanding = () => {
               animation: 'fadeInUp 0.8s ease-out 0.2s backwards'
             }}
           >
-            Automate Government Workflows with AI
+            Automation Government Workflows with AI
           </h1>
 
           <p
