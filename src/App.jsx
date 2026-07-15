@@ -47,7 +47,7 @@ const ChaosAILanding = () => {
       <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-700/30">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Chaos AI Labs
+            CHAOS AI Labs
           </div>
           <a
             href="mailto:contact@chaosailabs.com"
