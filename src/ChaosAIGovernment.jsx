@@ -10,12 +10,35 @@ const ChaosAIGovernment = () => {
     setContactForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', contactForm);
-    alert('Thank you for your inquiry. We will contact you soon.');
-    setContactForm({ name: '', email: '', message: '' });
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('https://mmcoqm8397.execute-api.ap-south-2.amazonaws.com/Prod', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: contactForm.name,
+        email: contactForm.email,
+        message: contactForm.message
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert('✅ Thank you! We will contact you soon.');
+      setContactForm({ name: '', email: '', message: '' });
+    } else {
+      alert('❌ Error sending message. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('❌ Error sending message. Please try again.');
+  }
+};
 
   return (
     <div className="w-full bg-white text-gray-900">
@@ -220,15 +243,7 @@ const ChaosAIGovernment = () => {
               <div className="space-y-6">
                 <div>
                   <h4 className="font-bold text-blue-900 mb-2">Email</h4>
-                  <p className="text-gray-700">contact@chaosailabs.com</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-blue-900 mb-2">Phone</h4>
-                  <p className="text-gray-700">+91 (XXX) XXXX-XXXX</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-blue-900 mb-2">Address</h4>
-                  <p className="text-gray-700">India</p>
+                  <p className="text-gray-700">dharmasetu@chaos.org.in</p>
                 </div>
                 <div>
                   <h4 className="font-bold text-blue-900 mb-2">Availability</h4>
