@@ -14,6 +14,8 @@ const ChaosAIGovernment = () => {
   e.preventDefault();
   
   try {
+    console.log('Sending:', contactForm);
+    
     const response = await fetch('https://mmcoqm8397.execute-api.ap-south-2.amazonaws.com/Prod', {
       method: 'POST',
       headers: {
@@ -26,17 +28,22 @@ const ChaosAIGovernment = () => {
       })
     });
 
-    const data = await response.json();
+    console.log('Response status:', response.status);
+    const text = await response.text();
+    console.log('Response text:', text);
+    
+    const data = JSON.parse(text);
+    console.log('Parsed data:', data);
 
     if (data.success) {
       alert('✅ Thank you! We will contact you soon.');
       setContactForm({ name: '', email: '', message: '' });
     } else {
-      alert('❌ Error sending message. Please try again.');
+      alert('❌ Error: ' + (data.error || 'Unknown error'));
     }
   } catch (error) {
     console.error('Error:', error);
-    alert('❌ Error sending message. Please try again.');
+    alert('❌ Error: ' + error.message);
   }
 };
 
